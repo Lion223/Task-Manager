@@ -1,0 +1,39 @@
+﻿@using TaskManager.Domain.Entities
+@model IEnumerable<TaskManager.Domain.Entities.TaskModel>
+
+@{
+
+    ViewData["Title"] = "Tasks";
+}
+
+<div class="container">
+    <main role="main" class="pb-3">
+
+        <div class="tasks_header">
+            <h2>Task Manager</h2>
+            <button type="button" id="add_task_button" class="add_task_button"><img src="~/img/add_sign.png" /></button>
+        </div>
+
+        @foreach (var t in Model)
+        {
+            <div class="task_wrapper">
+                <div class="task_container" ondblclick="updateTask(@t)">
+                    @Html.CheckBox("Finished", t.Finished, new { id = t.TaskId, @class = "task_finished_checkbox", onclick = "checkedClicked($(this))" })
+                    <span>@t.Priority</span>//
+                    <span>@t.Type</span>//
+                    <span>@t.Deadline.ToString("dd/MM/yyyy")</span>//
+                    <span>@t.Description</span>
+                </div>
+                <div class="remove_task_container">
+                    <a class="remove_task_button" href='@Url.Action("RemoveTask", "Tasks", new { id = t.TaskId })'>
+                        <img src="~/img/remove_sign.png" />
+                    </a>
+                </div>
+            </div>
+        }
+    </main>
+</div>
+
+
+
+

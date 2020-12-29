@@ -1,0 +1,46 @@
+﻿@model TaskManager.Domain.Entities.TaskModel
+
+<div class="modal_header">
+    <h3>Update Task</h3>
+    <button type="button" id="update_close_modal" class="close_modal"><img src="~/img/add_sign.png" /></button>
+</div>
+
+<div class="modal_content">
+    <form method="post" asp-action="UpdateTask">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="TaskId" type="hidden" />
+
+        <div class="form_row">
+            <input asp-for="Description" placeholder="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger">@Model.Description</span>
+        </div>
+
+        <div class="form_row">
+            <select asp-for="Type" class="mgr25">
+                <!option value="Work" @((Model.Type == "Work") ? "selected" : "")>Work</!option>
+                <!option value="Home" @((Model.Type == "Home") ? "selected" : "")>Home</!option>
+                <!option value="Fun" @((Model.Type == "Fun") ? "selected" : "")>Fun</!option>
+            </select>
+            <span asp-validation-for="Type" class="text-danger"></span>
+
+            <select asp-for="Priority">
+                <!option value="0" @((Model.Priority == 0) ? "selected" : "")>0</!option>
+                <!option value="1" @((Model.Priority == 1) ? "selected" : "")>1</!option>
+                <!option value="2" @((Model.Priority == 2) ? "selected" : "")>2</!option>
+                <!option value="3" @((Model.Priority == 3) ? "selected" : "")>3</!option>
+            </select>
+            <span asp-validation-for="Priority" class="text-danger"></span>
+        </div>
+
+        <div class="form_row">
+            <input asp-for="Deadline" class="form-control mgr25" />
+            <span asp-validation-for="Deadline" class="text-danger"></span>
+
+            <input type="submit" value="Apply" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
