@@ -3,42 +3,56 @@
 
 // Write your JavaScript code.
 
-const add_task_modal = document.querySelector('#add_task_modal_overlay');
-const add_modalBtn = document.querySelector('#add_task_button');
-const add_closeBtn = document.querySelector('#add_close_modal');
+var modalPlaceholder = $('#modal_placeholder');
 
-const update_task_modal = document.querySelector('#add_task_modal_overlay');
-const add_modalBtn = document.querySelector('#add_task_button');
-const add_closeBtn = document.querySelector('#add_close_modal');
+$('#create_modal_button').click(function (event) {
+    var url = $(this).data('url');
+    $.get(url).done(function (data) {
+        modalPlaceholder.html(data);
 
+        var ModalOverlay = $('#modal_overlay');
+        var closeModalButton = $('#close_modal_button');
 
-// Events
-add_modalBtn.addEventListener('click', openAddModal);
-add_closeBtn.addEventListener('click', closeAddModal);
-window.addEventListener('click', outsideClick);
+        ModalOverlay.css('visibility', 'visible');
+        ModalOverlay.animate({ opacity: 1 }, 250);
 
-// Open
-function openAddModal() {
-    add_task_modal.style.display = 'flex';
+        closeModalButton.click(closeModal);
+        ModalOverlay.click(function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    });
+});
+
+$('.update_modal_button').dblclick(function (event) {
+    var url = $(this).data('url');
+    $.get(url).done(function (data) {
+        modalPlaceholder.html(data);
+
+        var ModalOverlay = $('#modal_overlay');
+        var closeModalButton = $('#close_modal_button');
+
+        ModalOverlay.css('visibility', 'visible');
+        ModalOverlay.animate({ opacity: 1 }, 250);
+
+        closeModalButton.click(closeModal);
+        ModalOverlay.click(function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    });
+});
+
+function closeModal() {
+    $('.modal_overlay').animate({ opacity: 0 }, 250, function () {
+        modalPlaceholder.empty();
+    });
 }
 
-// Close
-function closeAddModal() {
-    add_task_modal.style.display = 'none';
-}
-
-// Close If Outside Click
-function outsideClick(e) {
-    if (e.target == add_task_modal) {
-        add_task_modal.style.display = 'none';
-    }
-}
-
+// Update the task's finished status after clicking on "finished" indicator
 function checkedClicked(selector) {
     var id = selector.attr('id');
     $.get('/Tasks/CheckedChanged', { id: id, isChecked: selector.is(":checked") }, function () { })
-}
-
-function updateTask() {
-
 }

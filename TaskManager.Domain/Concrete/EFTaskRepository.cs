@@ -36,17 +36,19 @@ namespace TaskManager.Domain.Concrete
         /// Access the tasks table
         /// </summary>
         public IEnumerable<TaskModel> Tasks => _context.Tasks;
+
         /// <summary>
         /// Add a task to the table
         /// </summary>
         /// <param name="task">Added task</param>
         /// <returns></returns>
-        public async Task<TaskModel> Add(TaskModel task)
+        public async Task<TaskModel> Create(TaskModel task)
         {
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
             return task;
         }
+
         /// <summary>
         /// Find the task by id
         /// </summary>
@@ -57,12 +59,32 @@ namespace TaskManager.Domain.Concrete
             var task = await _context.Tasks.FindAsync(id);
             return task;
         }
-        public void Remove(TaskModel task)
+
+        /// <summary>
+        /// Update the task
+        /// </summary>
+        /// <param name="task">Updated version of the task</param>
+        public async void Update(TaskModel task)
+        {
+            _context.Tasks.Attach(task);
+            var entry = _context.Entry(task);
+            entry.State = System.Data.Entity.EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Deletes the task
+        /// </summary>
+        /// <param name="task">Deleted task</param>
+        public async void Delete(TaskModel task)
         {
             _context.Entry(task).State = System.Data.Entity.EntityState.Deleted;
+            await _context.SaveChangesAsync();
         }
+
         /// <summary>
         /// Save changes commited to the task table
+        /// Used for external purposes (checked changed, for example)
         /// </summary>
         /// <returns></returns>
         public async Task SaveChanges()

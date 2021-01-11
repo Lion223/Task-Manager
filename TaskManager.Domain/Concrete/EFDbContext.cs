@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using TaskManager.Domain.Entities;
 
 namespace TaskManager.Domain.Concrete
@@ -19,6 +20,23 @@ namespace TaskManager.Domain.Concrete
         /// unless it's passed through constructor 
         /// </summary>
         /// <param name="connString">Connection string</param>
-        public EFDbContext(string connString) : base(connString) { }
+        public EFDbContext(string connString) : base(connString) 
+        {
+            // Fix the following issue:
+                // The model backing the 'EFDbContext' context has changed since the database was created
+            // No need for this fix, deleting a row record in the _MigrationHistory table has worked
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EFDbContext, Migrations.Configuration>());
+        }
+    }
+
+    /// <summary>
+    /// Class for migrations to work
+    /// </summary>
+    class EFDbContextFactory : IDbContextFactory<EFDbContext>
+    {
+        public EFDbContext Create()
+        {
+            return new EFDbContext("EFDbContext");
+        }
     }
 }

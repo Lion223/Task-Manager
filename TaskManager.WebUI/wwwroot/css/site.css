@@ -12,6 +12,16 @@ a {
   color: #0366d6;
 }
 
+/* Disable white outline on buttons */
+
+button {
+    border: 0; 
+}
+
+button:focus {
+    outline: none;
+}
+
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -86,6 +96,8 @@ h3 {
   padding: 100px;
 }
 
+/* Tasks page header */
+
 .tasks_header {
     display: flex;
     flex-direction: row;
@@ -98,7 +110,9 @@ h3 {
     margin-right: 60px;
 }
 
-.add_task_button {
+/* Create task button */
+
+.create_modal_button {
     align-self: center;
     border: none;
     cursor: pointer;
@@ -108,6 +122,8 @@ h3 {
     padding: 20px;
     line-height: 0;
 }
+
+/* Task container */
 
 .task_wrapper {
     display: flex;
@@ -124,23 +140,32 @@ h3 {
     border-radius: 10px;
 }
 
-.remove_task_container {
-    display: none;
+/* Delete task button */
+
+.delete_task_container {
+    display: flex;
     background: #EAEAEA;
     border-radius: 10px;
     margin-left: 10px;
+    /* Animate fade-in/fade-out effect on hover */
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.25s, opacity 0.25s;
 }
 
-.remove_task_button {
+.delete_task_button {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
 }
 
-.task_wrapper:hover > .remove_task_container {
-    display: flex;
+.task_wrapper:hover > .delete_task_container {
+    visibility: visible;
+    opacity: 1;
 }
+
+/* Finish indicator on task */
 
 .task_finished_checkbox {
     width: 28px;
@@ -159,37 +184,43 @@ h3 {
     background: linear-gradient(180deg, #2180E9 0%, #0E66C8 100%);
 }
 
+/* Modal overlay background */
+
 .modal_overlay {
-    display: none;
-    align-items: center;
-    justify-content: center;
     position: fixed;
-    z-index: 1;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
 }
 
-.new_task_modal_body {
+/* Modal dialog window */
+
+.modal_window {
+    border-radius: 10px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     background: linear-gradient(180deg, #32353B 0%, #44464D 100%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
-    border-radius: 10px;
-    padding: 50px;
-    width: 700px;
 }
 
 .modal_header {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 45px;
 }
 
-.close_modal {
+/* Modal window close button */
+
+.close_modal_button {
     border: none;
     cursor: pointer;
     background: transparent;
@@ -197,18 +228,130 @@ h3 {
     padding: 0;
 }
 
-.close_modal > img {
+.close_modal_button > img {
     transform: rotate(45deg);
-    
 }
+
+/* Modal dialog's form's input fields */
+
+input[type=submit].modal_apply_button {
+    background: linear-gradient(180deg, #2180E9 0%, #0E66C8 100%);
+    border: none;
+    box-shadow: 0px 0px 5px #126BCF;
+    border-radius: 10px;
+    font-weight: 800;
+    color: #EAEAEA;
+    font-size: 24px;
+    padding: 20px 70px;
+}
+
+input {
+    padding: 25px 15px;
+    border-radius: 10px;
+    border: none;
+    background: #46484E;
+    width: 100%;
+    outline: none;
+    color: #EAEAEA;
+    font-size: 24px;
+}
+
+::placeholder {
+    color: #5F6166;
+}
+
+select {
+    background: #46484E;
+    border-radius: 10px;
+    padding: 25px 50px 25px 15px;
+    border: none;
+    outline: none;
+    color: #EAEAEA;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Select for type occupies free width space of the row */
+
+.select_type_container {
+    position: relative;
+    flex-grow: 1;
+}
+
+.select_type {
+    width: 100%;
+}
+
+.select_priority_container {
+    position: relative;
+}
+
+/* First element which is served as a placeholder */
+
+select:invalid {
+    color: #5F6166;
+}
+
+/* Options in drowdown list */
+
+option {
+    color: #EAEAEA;
+}
+
+/* Custom dropdown arrow */
+
+.arrow {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    background: #46484E;
+    width: 50px;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 10px;
+}
+
+.arrow::before, 
+.arrow::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.arrow::before {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #5F6166;
+    border-radius: 4px;
+}
+
+select:hover + .arrow::before {
+    border-top: 8px solid #EAEAEA;
+}
+
+/* Row in modal dialog's form */
 
 .form_row {
     display: flex;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
-.form_row > .mgr25 {
-    margin-right: 25px;
+.form_row > .mgr20 {
+    margin-right: 20px;
 }
 
+/* Customize HTML5 Date element*/
 
+input[type=datetime-local] {
+    cursor: text;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
