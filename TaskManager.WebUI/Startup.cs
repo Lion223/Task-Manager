@@ -3,12 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Moq;
-using System;
-using System.Collections.Generic;
 using TaskManager.Domain.Abstract;
 using TaskManager.Domain.Concrete;
-using TaskManager.Domain.Entities;
+using TaskManager.Domain.Entities.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManager.WebUI
 {
@@ -28,8 +26,22 @@ namespace TaskManager.WebUI
                 .AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
 
+            // DI Tasks Db
             services.AddScoped<ITaskRepository>(_ =>
                 new EFTaskRepository(Configuration.GetConnectionString("EFDbContext")));
+
+            // Identity configuration
+            services.AddIdentity<UserModel, RoleModel>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            }).AddEntityFrameworkStores<IdentityAppContext>();
+
+            // DI Identity Db
+            services.AddDbContext<IdentityAppContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityDbContext"));
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +59,7 @@ namespace TaskManager.WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
