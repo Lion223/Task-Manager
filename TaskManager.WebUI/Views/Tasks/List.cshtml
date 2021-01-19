@@ -1,5 +1,5 @@
 ﻿@using TaskManager.Domain.Entities
-@model IEnumerable<TaskManager.Domain.Entities.TaskModel>
+@model IEnumerable<TaskModel>
 
 @{
 
@@ -13,15 +13,21 @@
 
         <div class="tasks_header">
             <h2>Task Manager</h2>
-            <button type="button" class="create_modal_button" id="create_modal_button"  
+            <button type="button" class="create_modal_button" id="create_modal_button"
                     data-url="@Url.Action("CreateTask")">
                 <img src="~/img/add_sign.png" />
             </button>
+            <div class="user_info_container">
+                <span class="email">@ViewBag.Email</span>
+                <a class="sign_out_button" asp-controller="Account" asp-action="SignOut">                        
+                    <img src="~/img/sign_out.png" />
+                </a>
+            </div>
         </div>
 
         @foreach (var t in Model)
         {
-            <div class="task_wrapper update_modal_button" data-url="@Url.Action("UpdateTask", values: new { id = t.TaskId })">
+            <div class="task_wrapper update_modal_button" data-url="@Url.Action("UpdateTask", new { id = t.TaskId })">
                 <div class="task_container">
                     @Html.CheckBox("Finished", t.Finished, new { id = t.TaskId, @class = "task_finished_checkbox", onclick = "checkedClicked($(this))" })
                     <span>@t.Priority</span>//
@@ -30,7 +36,7 @@
                     <span>@t.Description</span>
                 </div>
                 <div class="delete_task_container">
-                    <a class="delete_task_button" href="@Url.Action("DeleteTask", "Tasks", new { id = t.TaskId })">
+                    <a class="delete_task_button" data-url="@Url.Action("DeleteTask", new { id = t.TaskId })">
                         <img src="~/img/delete_sign.png" />
                     </a>
                 </div>

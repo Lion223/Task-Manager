@@ -13,6 +13,7 @@
                 <form method="post" asp-action="CreateTask">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input asp-for="TaskId" type="hidden" />
+                    <input asp-for="UserId" type="hidden" />
 
                     <div class="form_row">
                         <input asp-for="Description" placeholder="Description" />
@@ -48,7 +49,7 @@
                         <input asp-for="Deadline" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" class="mgr20" />
                         <span asp-validation-for="Deadline" class="text-danger"></span>
 
-                        <input type="submit" value="Apply" class="modal_save_button" />
+                        <input type="submit" value="Apply" class="modal_apply_button" />
                     </div>
                 </form>
             </div>

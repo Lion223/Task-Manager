@@ -13,6 +13,8 @@
                 <form method="post" asp-action="UpdateTask">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input asp-for="TaskId" type="hidden" />
+                    <input asp-for="UserId" type="hidden" />
+                    <input asp-for="Finished" type="hidden" />
 
                     <div class="form_row">
                         <input asp-for="Description" placeholder="Description" />

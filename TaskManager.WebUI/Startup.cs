@@ -26,22 +26,35 @@ namespace TaskManager.WebUI
                 .AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
 
-            // DI Tasks Db
-            services.AddScoped<ITaskRepository>(_ =>
-                new EFTaskRepository(Configuration.GetConnectionString("EFDbContext")));
-
             // Identity configuration
             services.AddIdentity<UserModel, RoleModel>(options =>
             {
                 options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
             }).AddEntityFrameworkStores<IdentityAppContext>();
+
+            // Set the sign-in path
+            // Otherwise, "Account/Login" path is used by default in Identity
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Signin";
+            });
 
             // DI Identity Db
             services.AddDbContext<IdentityAppContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("IdentityDbContext"));
+                options.UseSqlServer(Configuration.GetConnectionString("IdentityAppContext"));
             });
 
+            // DI Tasks Db
+            services.AddDbContext<EFDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("EFDbContext"));
+            });
+
+            // DI Repository
+            services.AddScoped<ITaskRepository, EFTaskRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,11 +75,14 @@ namespace TaskManager.WebUI
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Disable defined routes to use only attribute routing
+            // In that case, every action needs to have the attribute in order to be accessed to
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Tasks}/{action=List}/{id?}");
+                endpoints.MapControllers();
+                //endpoints.MapControllerRoute(
+                //name: "default",
+                //pattern: "{controller=Tasks}/{action=List}/{id?}");
             });
         }
     }

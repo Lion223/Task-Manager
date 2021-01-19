@@ -2,12 +2,16 @@
 using System.Threading.Tasks;
 using TaskManager.Domain.Abstract;
 using TaskManager.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManager.Domain.Concrete
 {
     /// <summary>
     /// Entity Framework implementation of repository for tasks
     /// <summary>
+
+    // Async void methods caused "Cannot access a disposed context instance"
+    // TODO: Update is not working
     public class EFTaskRepository : ITaskRepository
     {
         #region Private members
@@ -22,12 +26,11 @@ namespace TaskManager.Domain.Concrete
         #region Constructor
 
         /// <summary>
-        /// Create the context by passing a connection string
+        /// Receive the context through DI
         /// </summary>
-        /// <param name="connString">Connection string</param>
-        public EFTaskRepository(string connString)
+        public EFTaskRepository(EFDbContext context)
         {
-            _context = new EFDbContext(connString);
+            _context = context;
         }
 
         #endregion
@@ -42,11 +45,10 @@ namespace TaskManager.Domain.Concrete
         /// </summary>
         /// <param name="task">Added task</param>
         /// <returns></returns>
-        public async Task<TaskModel> Create(TaskModel task)
+        public async Task CreateAsync(TaskModel task)
         {
             _context.Tasks.Add(task);
             await _context.SaveChangesAsync();
-            return task;
         }
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace TaskManager.Domain.Concrete
         /// </summary>
         /// <param name="id">id of the searched task</param>
         /// <returns></returns>
-        public async Task<TaskModel> Find(int id)
+        public async Task<TaskModel> FindAsync(int id)
         {
             var task = await _context.Tasks.FindAsync(id);
             return task;
@@ -64,21 +66,26 @@ namespace TaskManager.Domain.Concrete
         /// Update the task
         /// </summary>
         /// <param name="task">Updated version of the task</param>
-        public async void Update(TaskModel task)
+        public async Task UpdateAsync(TaskModel task)
         {
             _context.Tasks.Attach(task);
             var entry = _context.Entry(task);
-            entry.State = System.Data.Entity.EntityState.Modified;
+            entry.State = EntityState.Modified;
+
+            // Microsoft.EntityFrameworkCore.Database.Transaction: Error: An error occurred using a transaction.
+            // Exception thrown: 'System.ObjectDisposedException' in System.Private.CoreLib.dll
             await _context.SaveChangesAsync();
+            //_context.Update(task);
+            //await _context.SaveChangesAsync();
         }
 
         /// <summary>
         /// Deletes the task
         /// </summary>
         /// <param name="task">Deleted task</param>
-        public async void Delete(TaskModel task)
+        public async Task DeleteAsync(TaskModel task)
         {
-            _context.Entry(task).State = System.Data.Entity.EntityState.Deleted;
+            _context.Entry(task).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
 
@@ -87,10 +94,7 @@ namespace TaskManager.Domain.Concrete
         /// Used for external purposes (checked changed, for example)
         /// </summary>
         /// <returns></returns>
-        public async Task SaveChanges()
-        {
-            await _context.SaveChangesAsync();
-        }
+        public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
 
     }
 }

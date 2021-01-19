@@ -1,0 +1,27 @@
+﻿@model TaskManager.Domain.Entities.TaskModel
+
+<div class="modal_overlay" id="modal_overlay" tabindex="-1" role="dialog">
+    <div class="modal_window" role="document">
+        <div class="modal_content">
+            <div class="modal_header">
+                <h3>Delete Task</h3>
+                <button type="button" class="close_modal_button" id="close_modal_button">
+                    <img src="~/img/add_sign.png" />
+                </button>
+            </div>
+            <div class="modal_body">
+                <p>Would you like to delete this task?</p>
+                <form method="post" asp-action="DeleteTask" asp-controller="Tasks">
+                    <div class="form_row">
+                        <input class="modal_apply_button" type="submit" value="Delete" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

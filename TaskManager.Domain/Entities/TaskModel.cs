@@ -7,12 +7,16 @@ namespace TaskManager.Domain.Entities
     /// <summary>
     /// Domain model for a task
     /// <summary>
+    // Written the attribute with full name, because just "Table(...)" wasn't working, don't remember, it may work, but don't want to change anything that works at the moment
     [System.ComponentModel.DataAnnotations.Schema.Table("Tasks")]
     public class TaskModel
     {
         [ScaffoldColumn(false)]
         [Key]
         public int TaskId { get; set; }
+        [ScaffoldColumn(false)]
+        [Required]
+        public int UserId { get; set; }
         [Required]
         public string Type { get; set; }
 
@@ -27,7 +31,7 @@ namespace TaskManager.Domain.Entities
         [Required]
         public string Description { get; set; }
         [ScaffoldColumn(false)]
+        [Required]
         public bool Finished { get; set; }
-        public string Test { get; set; }
     }
 }
