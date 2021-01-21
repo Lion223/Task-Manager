@@ -1,86 +1,19 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
+/* General */
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-/* Disable white outline on buttons */
-
-button {
-    border: 0; 
-}
-
-button:focus {
-    outline: none;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
 html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
+    min-height: 100vh;
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-  background: linear-gradient(180deg, #32353B 0%, #44464D 100%);
-  font-family: 'Montserrat', sans-serif;
-  color: #EAEAEA;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background: linear-gradient(180deg, #32353B 0%, #44464D 100%);
+    font-family: 'Montserrat', sans-serif;
+    color: #EAEAEA;
+    font-size: 16px;
 }
 
 h2, h3 {
@@ -93,7 +26,28 @@ h3 {
 }
 
 .container {
-  padding: 100px;
+    padding: 100px;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Disable white outline on buttons */
+
+button {
+    border: 0;
+}
+
+button:focus {
+    outline: none;
 }
 
 /* Tasks page header */
@@ -147,7 +101,7 @@ h3 {
     background: linear-gradient(180deg, #2180E9 0%, #0E66C8 100%);
     box-shadow: 0px 0px 4px #0E67C9;
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 15px 20px 16px;
     line-height: 0;
     
 }
@@ -241,6 +195,10 @@ h3 {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.03);
 }
 
+.modal_window.no_header {
+    padding-bottom: 30px;
+}
+
 .modal_header {
     display: flex;
     flex-direction: row;
@@ -262,9 +220,9 @@ h3 {
     transform: rotate(45deg);
 }
 
-/* Modal dialog's form's input fields */
+/* Buttons */
 
-.modal_apply_button {
+.apply_button {
     background: linear-gradient(180deg, #2180E9 0%, #0E66C8 100%);
     border: none;
     box-shadow: 0px 0px 5px #126BCF;
@@ -272,7 +230,35 @@ h3 {
     font-weight: 800;
     color: #EAEAEA;
     font-size: 24px;
-    padding: 20px 70px;
+    padding: 20px 50px;
+    transition: box-shadow 0.25s;
+}
+
+.apply_button:hover, .apply_button:focus {
+    box-shadow: 0px 0px 15px #126BCF;
+}
+
+.cancel_button {
+    border: 5px solid #5F6166;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 20px 50px;
+    color: #5F6166;
+    font-size: 24px;
+    font-weight: 800;
+    transition: border-color 0.25s, color 0.25s;
+}
+
+.cancel_button:hover, .cancel_button:focus {
+    border-color: #EAEAEA;
+}
+
+/* Modal dialog's form's input fields */
+
+.modal_message {
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: block;
 }
 
 input {
@@ -360,7 +346,7 @@ option {
     border-radius: 4px;
 }
 
-select:hover + .arrow::before {
+select:hover + .arrow::before, select:focus + .arrow::before {
     border-top: 8px solid #EAEAEA;
 }
 
@@ -384,4 +370,10 @@ input[type=datetime-local] {
 ::-webkit-calendar-picker-indicator {
     filter: invert(1);
     cursor: pointer;
+}
+
+/* Validation styles */
+
+.validation-summary-valid > ul {
+    padding-left: 20px;
 }

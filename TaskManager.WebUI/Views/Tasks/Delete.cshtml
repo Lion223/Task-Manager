@@ -1,0 +1,29 @@
+﻿@model TaskManager.Domain.Entities.TaskModel
+
+<div class="modal_overlay" id="modal_overlay"  role="dialog">
+    <div class="modal_window no_header" role="document">
+        <div class="modal_content">
+            <div class="modal_body">
+                <b class="modal_message">Would you like to delete this task?</b>
+                <form method="post" asp-action="Delete" asp-controller="Tasks">
+                    @Html.HiddenFor(t => t.TaskId)
+                    @Html.HiddenFor(t => t.UserId)
+                    @Html.HiddenFor(t => t.Type)
+                    @Html.HiddenFor(t => t.Description)
+                    @Html.HiddenFor(t => t.Priority)
+                    @Html.HiddenFor(t => t.Deadline)
+                    @Html.HiddenFor(t => t.Finished)
+                    <div class="form_row">
+                        <a class="cancel_button mgr20" id="close_modal_button" href="/">Cancel</a>
+                        <input class="apply_button" type="submit" value="Delete" />
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

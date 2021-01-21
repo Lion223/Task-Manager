@@ -1,9 +1,9 @@
-﻿namespace TaskManager.WebUI.ViewModels
+﻿namespace TaskManager.WebUI.ViewModels.Identity
 {
     /// <summary>
     /// ViewModel for the sign-up form
     /// </summary>
-    public class SignUpModel
+    public class SignUpViewModel
     {
         /// <summary>
         /// Email used for the user

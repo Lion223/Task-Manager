@@ -1,5 +1,5 @@
-﻿@using TaskManager.WebUI.ViewModels
-@model SignInModel
+﻿@using TaskManager.WebUI.ViewModels.Identity
+@model SignInViewModel
 @{
 
     ViewData["Title"] = "Sign In";
@@ -28,12 +28,12 @@
             </div>
 
             <div class="form_row">
-                <input type="submit" value="Sign In" class="modal_apply_button" />
+                <input type="submit" value="Sign In" class="apply_button" />
             </div>
         </form>
 
         <div class="form_row">
-            <button type="button" onclick="location.href='@Url.Action("Signup")'" class="modal_apply_button">Sign Up</button>
+            <button type="button" onclick="location.href='@Url.Action("Signup")'" class="apply_button">Sign Up</button>
         </div>
 
     </main>

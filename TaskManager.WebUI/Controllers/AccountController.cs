@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using TaskManager.Domain.Entities.Identity;
-using TaskManager.WebUI.ViewModels;
+using TaskManager.WebUI.ViewModels.Identity;
 
 namespace TaskManager.WebUI.Controllers
 {
@@ -59,7 +59,7 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Sign-up result</returns>
         [Route("Signup")]
         [HttpPost]
-        public async Task<IActionResult> SignUp(SignUpModel signUpModel)
+        public async Task<IActionResult> SignUp(SignUpViewModel signUpModel)
         {
             UserModel user = await _userManager.FindByEmailAsync("Tester@tester.com" /* signUpModel.Email */);
             if (user == null)
@@ -95,7 +95,7 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Sign-in result</returns>
         [Route("Signin")]
         [HttpPost]
-        public async Task<IActionResult> SignIn(SignInModel signInModel)
+        public async Task<IActionResult> SignIn(SignInViewModel signInModel)
         {
             UserModel user = new UserModel { Email = "Tester@tester.com"/* signInModel.Email */};
             var result = await _signInManager.PasswordSignInAsync("Tester@tester.com", "Tester", false, false);

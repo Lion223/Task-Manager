@@ -4,17 +4,16 @@
     <div class="modal_window" role="document">
         <div class="modal_content">
             <div class="modal_header">
-                <h3>Update Task</h3>
+                <h3>New Task</h3>
                 <button type="button" class="close_modal_button" id="close_modal_button">
                     <img src="~/img/add_sign.png" />
                 </button>
             </div>
             <div class="modal_body">
-                <form method="post" asp-action="UpdateTask">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <form method="post" asp-action="Create" data-ajax="true" data-ajax-success="onValidateTask">
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <input asp-for="TaskId" type="hidden" />
                     <input asp-for="UserId" type="hidden" />
-                    <input asp-for="Finished" type="hidden" />
 
                     <div class="form_row">
                         <input asp-for="Description" placeholder="Description" />
@@ -24,9 +23,10 @@
                     <div class="form_row">
                         <div class="select_type_container mgr20">
                             <select class="select_type" required asp-for="Type">
-                                <!option value="Work" @((Model.Type == "Work") ? "selected" : "")>Work</!option>
-                                <!option value="Home" @((Model.Type == "Home") ? "selected" : "")>Home</!option>
-                                <!option value="Fun" @((Model.Type == "Fun") ? "selected" : "")>Fun</!option>
+                                <option value="" disabled selected hidden>Type</option>
+                                <option value="Work">Work</option>
+                                <option value="Home">Home</option>
+                                <option value="Fun">Fun</option>
                             </select>
                             <span class="arrow"></span>
                             <span asp-validation-for="Type" class="text-danger"></span>
@@ -34,10 +34,11 @@
 
                         <div class="select_priority_container">
                             <select class="select_priority" required asp-for="Priority">
-                                <!option value="0" @((Model.Priority == 0) ? "selected" : "")>0</!option>
-                                <!option value="1" @((Model.Priority == 1) ? "selected" : "")>1</!option>
-                                <!option value="2" @((Model.Priority == 2) ? "selected" : "")>2</!option>
-                                <!option value="3" @((Model.Priority == 3) ? "selected" : "")>3</!option>
+                                <option value="" disabled selected hidden>Priority</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
                             <span class="arrow"></span>
                             <span asp-validation-for="Priority" class="text-danger"></span>
@@ -45,10 +46,10 @@
                     </div>
 
                     <div class="form_row">
-                        <input asp-for="Deadline" class="mgr20" />
+                        <input asp-for="Deadline" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" class="mgr20" />
                         <span asp-validation-for="Deadline" class="text-danger"></span>
 
-                        <input type="submit" value="Apply" class="modal_apply_button" />
+                        <input type="submit" value="Apply" class="apply_button" />
                     </div>
                 </form>
             </div>

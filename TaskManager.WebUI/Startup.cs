@@ -7,6 +7,7 @@ using TaskManager.Domain.Abstract;
 using TaskManager.Domain.Concrete;
 using TaskManager.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace TaskManager.WebUI
 {
@@ -54,7 +55,7 @@ namespace TaskManager.WebUI
             });
 
             // DI Repository
-            services.AddScoped<ITaskRepository, EFTaskRepository>();
+            services.AddScoped<ITaskRepository, EFTaskRepository>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -76,6 +76,25 @@ function closeModal() {
     });
 }
 
+function onValidateTask(data) {
+
+    if (data.status === "success") {
+        window.location.replace("/");
+    }
+
+    var summary = $("[data-valmsg-summary]");
+    var ul = summary.find("ul");
+    ul.empty();
+    $.each(data.formErrors, function () {
+        if (this.errors.length > 0) {
+            summary.children('ul').append($('<li></li>').text(this.errors.join()));
+            // If each field needs to have it's own validation field filled:
+                //$("[data-valmsg-for=" + this.key + "]").html(this.errors.join());
+        }
+        
+    });
+}
+
 // Update the task's finished status after clicking on "finished" indicator
 function checkedClicked(selector) {
     var id = selector.attr('id');

@@ -17,7 +17,7 @@ namespace TaskManager.Domain.Entities
         [ScaffoldColumn(false)]
         [Required]
         public int UserId { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Select the type")]
         public string Type { get; set; }
 
         // Nullable if need to know that user hasn't selected a value
@@ -25,10 +25,11 @@ namespace TaskManager.Domain.Entities
         // That also fixes the issue, when SelectTagHelper puts "selected" attribute on int's default value option which is 0
         // Instead of making placeholder selected by default
         [Required]
+        [Range(0,3, ErrorMessage = "Select priority on a scale of 0 to 3")]
         public int? Priority { get; set; }
-        [Required]
-        public DateTime Deadline { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Select the date for the deadline")]
+        public DateTime? Deadline { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Write the description of the task")]
         public string Description { get; set; }
         [ScaffoldColumn(false)]
         [Required]

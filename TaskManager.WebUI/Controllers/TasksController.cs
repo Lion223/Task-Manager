@@ -67,10 +67,10 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Partial view that represents a modal window for task creation</returns>
         [Route("Create")]
         [HttpGet]
-        public IActionResult CreateTask()
+        public IActionResult Create()
         {
             TaskModel task = new TaskModel { UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) };
-            return PartialView("CreateTask", task);
+            return PartialView("Create", task);
         }
 
         /// <summary>
@@ -80,10 +80,22 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Redirection to the main view</returns>
         [Route("Create")]
         [HttpPost]
-        public async Task<IActionResult> CreateTask(TaskModel task)
+        public async Task<IActionResult> Create(TaskModel task)
         {
-            await _repository.CreateAsync(task);
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                await _repository.CreateAsync(task);
+                return Json(new
+                {
+                    status = "success"
+                });
+            }
+
+            return Json(new
+            {
+                status = "failure",
+                formErrors = ModelState.Select(kvp => new { key = kvp.Key, errors = kvp.Value.Errors.Select(e => e.ErrorMessage) })
+            });
         }
 
         /// <summary>
@@ -93,13 +105,13 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Partial view that represents a modal window for task updating</returns>
         [Route("Update/{id:int}")]
         [HttpGet]
-        public async Task<IActionResult> UpdateTask(int id)
+        public async Task<IActionResult> Update(int id)
         {
             var task = await _repository.FindAsync(id);
             
             if (task?.UserId == int.Parse(_userManager.GetUserId(User)))
             {
-                return PartialView("UpdateTask", task);
+                return PartialView("Update", task);
             }
 
             return RedirectToAction("List");
@@ -112,10 +124,22 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Redirection to the main view</returns>
         [Route("Update/{id:int}")]
         [HttpPost]
-        public async Task<IActionResult> UpdateTask(TaskModel task)
+        public async Task<IActionResult> Update(TaskModel task)
         {
-            await _repository.UpdateAsync(task);
-            return RedirectToAction("List");
+            if (ModelState.IsValid)
+            {
+                await _repository.UpdateAsync(task);
+                return Json(new
+                {
+                    status = "success"
+                });
+            }
+
+            return Json(new
+            {
+                status = "failure",
+                formErrors = ModelState.Select(kvp => new { key = kvp.Key, errors = kvp.Value.Errors.Select(e => e.ErrorMessage) })
+            });
         }
 
         /// <summary>
@@ -125,13 +149,13 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Partial view that represents a modal window for task deletion</returns>
         [Route("Delete/{id:int}")]
         [HttpGet]
-        public async Task<IActionResult> DeleteTask(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var task = await _repository.FindAsync(id);
 
             if (task?.UserId == int.Parse(_userManager.GetUserId(User)))
             {
-                return PartialView("DeleteTask", task);
+                return PartialView("Delete", task);
             }
 
             return RedirectToAction("List");
@@ -140,13 +164,12 @@ namespace TaskManager.WebUI.Controllers
         /// <summary>
         /// POST Delete task action
         /// </summary>
-        /// <param name="id">Id of the removing task</param>
+        /// <param name="task">Task to be removed</param>
         /// <returns>Redirection to the main view</returns>
         [Route("Delete/{id:int}")]
-        [HttpPost, ActionName("DeleteTask")]
-        public async Task<IActionResult> DeleteTaskPost(int id)
+        [HttpPost]
+        public async Task<IActionResult> Delete(TaskModel task)
         {
-            var task = await _repository.FindAsync(id);
             await _repository.DeleteAsync(task);
             return RedirectToAction("List");
         }
