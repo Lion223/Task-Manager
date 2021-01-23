@@ -8,6 +8,7 @@ using TaskManager.Domain.Concrete;
 using TaskManager.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using AutoMapper;
 
 namespace TaskManager.WebUI
 {
@@ -55,7 +56,10 @@ namespace TaskManager.WebUI
             });
 
             // DI Repository
-            services.AddScoped<ITaskRepository, EFTaskRepository>();            
+            services.AddScoped<ITaskRepository, EFTaskRepository>();
+
+            // AutoMapper configuration
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

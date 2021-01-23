@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Identity;
 using TaskManager.Domain.Entities.Identity;
 using System.Security.Claims;
 using System.Linq;
+using AutoMapper;
+using TaskManager.WebUI.ViewModels.Tasks;
 
 namespace TaskManager.WebUI.Controllers
 {
@@ -28,18 +30,26 @@ namespace TaskManager.WebUI.Controllers
         /// </summary>
         private readonly UserManager<UserModel> _userManager;
 
+        /// <summary>
+        /// AutoMapper
+        /// </summary>
+        private readonly IMapper _mapper;
+
         #endregion
 
         #region Constructor
 
         /// <summary>
-        /// Receive Task repository and User manager through DI
+        /// Receive services through DI
         /// </summary>
-        /// <param name="repository"></param>
-        public TasksController(ITaskRepository repository, UserManager<UserModel> userManager)
+        /// <param name="repository">The Tasks table repository</param>
+        /// <param name="userManager">Control the user settings</param>
+        /// <param name="mapper">AutoMapper</param>
+        public TasksController(ITaskRepository repository, UserManager<UserModel> userManager, IMapper mapper)
         {
             _repository = repository;
             _userManager = userManager;
+            _mapper = mapper;
         }
 
         #endregion
@@ -69,8 +79,7 @@ namespace TaskManager.WebUI.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            TaskModel task = new TaskModel { UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) };
-            return PartialView("Create", task);
+            return PartialView("Create", new CreateViewModel());
         }
 
         /// <summary>
@@ -80,10 +89,12 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Redirection to the main view</returns>
         [Route("Create")]
         [HttpPost]
-        public async Task<IActionResult> Create(TaskModel task)
+        public async Task<IActionResult> Create(CreateViewModel createTask)
         {
             if (ModelState.IsValid)
             {
+                TaskModel task = _mapper.Map<TaskModel>(createTask);
+                task.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
                 await _repository.CreateAsync(task);
                 return Json(new
                 {

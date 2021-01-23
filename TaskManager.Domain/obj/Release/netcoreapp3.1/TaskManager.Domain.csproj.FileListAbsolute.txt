@@ -1,0 +1,12 @@
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\bin\Release\netcoreapp3.1\TaskManager.Domain.deps.json
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\bin\Release\netcoreapp3.1\TaskManager.Domain.runtimeconfig.json
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\bin\Release\netcoreapp3.1\TaskManager.Domain.runtimeconfig.dev.json
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\bin\Release\netcoreapp3.1\TaskManager.Domain.dll
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\bin\Release\netcoreapp3.1\TaskManager.Domain.pdb
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.csprojAssemblyReference.cache
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.AssemblyInfoInputs.cache
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.AssemblyInfo.cs
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.csproj.CoreCompileInputs.cache
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.dll
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.pdb
+W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Release\netcoreapp3.1\TaskManager.Domain.genruntimeconfig.cache

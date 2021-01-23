@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "aNP30n6F2x+zYR/4pMm3h6UOPsNtAGXIpgluiDLyu+jXXRX1YeSq5h3cN1KQTbOCAUkX1M9D1FkhyzcjPoRdcQ==",
+  "dgSpecHash": "x4lSQgxVqAdPR2Nf9NIM8G4S7QYq/nW05LwML1K/22iANURwjpuZjNuys6hJErbzab8k3Mky5kFJ0yddkInPxA==",
   "success": true,
   "projectFilePath": "W:\\Sources\\Code\\C#\\TaskManager\\TaskManager.WebUI\\TaskManager.WebUI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Lion\\.nuget\\packages\\automapper\\10.1.0\\automapper.10.1.0.nupkg.sha512",
+    "C:\\Users\\Lion\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
@@ -129,7 +131,7 @@
     "C:\\Users\\Lion\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
-    "C:\\Users\\Lion\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
+    "C:\\Users\\Lion\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
     "C:\\Users\\Lion\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
