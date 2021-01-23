@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TaskManager.WebUI.ViewModels.Tasks
 {
+    /// <summary>
+    /// A view model for the create operation
+    /// </summary>
     public class CreateViewModel
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "Select the type")]

@@ -9,6 +9,7 @@ using TaskManager.Domain.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using AutoMapper;
+using TaskManager.WebUI.Identity;
 
 namespace TaskManager.WebUI
 {
@@ -34,7 +35,12 @@ namespace TaskManager.WebUI
                 options.User.RequireUniqueEmail = true;
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
-            }).AddEntityFrameworkStores<IdentityAppContext>();
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredUniqueChars = 3;
+            })
+                .AddEntityFrameworkStores<IdentityAppContext>()
+                .AddErrorDescriber<CustomIdentityErrorDescriber>();
 
             // Set the sign-in path
             // Otherwise, "Account/Login" path is used by default in Identity

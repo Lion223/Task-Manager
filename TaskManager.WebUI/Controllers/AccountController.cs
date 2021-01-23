@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TaskManager.Domain.Entities.Identity;
 using TaskManager.WebUI.ViewModels.Identity;
@@ -61,15 +63,32 @@ namespace TaskManager.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel signUpModel)
         {
-            UserModel user = await _userManager.FindByEmailAsync("Tester@tester.com" /* signUpModel.Email */);
-            if (user == null)
+            if (ModelState.IsValid)
             {
-                user = new UserModel();
-                user.UserName = "Tester@tester.com";
-                user.Email = "Tester@tester.com";
+                UserModel user = await _userManager.FindByEmailAsync(signUpModel.Email);
+                if (user == null)
+                {
+                    user = new UserModel();
+                    user.UserName = signUpModel.Email;
+                    user.Email = signUpModel.Email;
 
-                var result = await _userManager.CreateAsync(user, "Tester");
-                return RedirectToAction("Signin");
+                    var result = await _userManager.CreateAsync(user, signUpModel.Password);
+
+                    if (result.Errors.Count() > 0)
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+
+                        return View();
+                    }
+
+                    return RedirectToAction("Signin");
+                }
+
+                ModelState.AddModelError("Email", "Email has already been taken");
+                return View();
             }
 
             return View();
@@ -97,11 +116,16 @@ namespace TaskManager.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> SignIn(SignInViewModel signInModel)
         {
-            UserModel user = new UserModel { Email = "Tester@tester.com"/* signInModel.Email */};
-            var result = await _signInManager.PasswordSignInAsync("Tester@tester.com", "Tester", false, false);
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("List", "Tasks");   
+                var result = await _signInManager.PasswordSignInAsync(signInModel.Email, signInModel.Password, false, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Read", "Tasks");
+                }
+
+                ModelState.AddModelError("Email", "The user with specified credentials is not registered");
+                return View();
             }
 
             return View();

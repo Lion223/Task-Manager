@@ -7,35 +7,39 @@
 
 <div id="modal_placeholder"></div>
 
-<div class="container">
-    <main role="main" class="pb-3">
+<div class="container d-flex justify-content-center align-items-center ">
+    <main role="main" class="flex-grow-1 m-mgt60">
 
         <div class="tasks_header">
             <h2>Sign Up</h2>
         </div>
 
         <form method="post" asp-action="Signup">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form_row">
                 <input asp-for="Email" placeholder="Email" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                @*<span asp-validation-for="Email" class="text-danger"></span>*@
             </div>
 
             <div class="form_row">
                 <input asp-for="Password" placeholder="Password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+                @*<span asp-validation-for="Password" class="text-danger"></span>*@
             </div>
 
             <div class="form_row">
                 <input asp-for="ConfirmPassword" placeholder="Confirm password" />
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                @*<span asp-validation-for="ConfirmPassword" class="text-danger"></span>*@
             </div>
 
             <div class="form_row">
                 <input type="submit" value="Sign Up" class="apply_button" />
             </div>
         </form>
+
+        <div class="form_row">
+            <button type="button" onclick="location.href='@Url.Action("Signin")'" class="cancel_button">Back</button>
+        </div>
 
     </main>
 </div>

@@ -4,16 +4,20 @@ for details on configuring this project to bundle and minify static web assets. 
 /* General */
 
 html {
-    min-height: 100vh;
+    height: 100vh;
 }
 
 body {
-    /* Margin bottom by footer height */
-    margin-bottom: 60px;
     background: linear-gradient(180deg, #32353B 0%, #44464D 100%);
     font-family: 'Montserrat', sans-serif;
     color: #EAEAEA;
     font-size: 16px;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    padding: 100px;
 }
 
 h2, h3 {
@@ -25,9 +29,6 @@ h3 {
     font-weight: bold;
 }
 
-.container {
-    padding: 100px;
-}
 
 a {
     cursor: pointer;
@@ -239,6 +240,7 @@ button:focus {
 }
 
 .cancel_button {
+    background-color: transparent;
     border: 5px solid #5F6166;
     box-sizing: border-box;
     border-radius: 10px;
@@ -251,6 +253,7 @@ button:focus {
 
 .cancel_button:hover, .cancel_button:focus {
     border-color: #EAEAEA;
+    color: #EAEAEA;
 }
 
 /* Modal dialog's form's input fields */
@@ -354,11 +357,16 @@ select:hover + .arrow::before, select:focus + .arrow::before {
 
 .form_row {
     display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
 }
 
-.form_row > .mgr20 {
+.mgr20 {
     margin-right: 20px;
+}
+
+.m-mgt60 {
+    margin-top: -60px;
 }
 
 /* Customize HTML5 Date element*/
@@ -374,6 +382,6 @@ input[type=datetime-local] {
 
 /* Validation styles */
 
-.validation-summary-valid > ul {
+.validation-summary-valid > ul, .validation-summary-errors > ul {
     padding-left: 20px;
 }

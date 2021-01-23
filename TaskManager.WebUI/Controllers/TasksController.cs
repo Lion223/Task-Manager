@@ -9,6 +9,7 @@ using System.Security.Claims;
 using System.Linq;
 using AutoMapper;
 using TaskManager.WebUI.ViewModels.Tasks;
+using System.Collections.Generic;
 
 namespace TaskManager.WebUI.Controllers
 {
@@ -61,14 +62,17 @@ namespace TaskManager.WebUI.Controllers
         /// </summary>
         /// <returns>View with user's tasks</returns>
         [Route("")]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> Read()
         {
             int userId = int.Parse(_userManager.GetUserId(User));
+
             await _userManager.FindByIdAsync(userId.ToString()).ContinueWith(task =>
             {
                 ViewBag.Email = task.Result.Email;
             });
-            return View(_repository.Tasks.Where(x => x.UserId == userId));
+
+            var tasks = _mapper.ProjectTo<ReadViewModel>(_repository.Tasks.Where(x => x.UserId == userId).AsQueryable());
+            return View(tasks);
         }
 
         /// <summary>
@@ -96,6 +100,7 @@ namespace TaskManager.WebUI.Controllers
                 TaskModel task = _mapper.Map<TaskModel>(createTask);
                 task.UserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
                 await _repository.CreateAsync(task);
+
                 return Json(new
                 {
                     status = "success"
@@ -122,10 +127,11 @@ namespace TaskManager.WebUI.Controllers
             
             if (task?.UserId == int.Parse(_userManager.GetUserId(User)))
             {
-                return PartialView("Update", task);
+                UpdateViewModel updateTask = _mapper.Map<UpdateViewModel>(task);
+                return PartialView("Update", updateTask);
             }
 
-            return RedirectToAction("List");
+            return RedirectToAction("Read");
         }
 
         /// <summary>
@@ -135,10 +141,11 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Redirection to the main view</returns>
         [Route("Update/{id:int}")]
         [HttpPost]
-        public async Task<IActionResult> Update(TaskModel task)
+        public async Task<IActionResult> Update(UpdateViewModel updateTask)
         {
             if (ModelState.IsValid)
             {
+                TaskModel task = _mapper.Map<TaskModel>(updateTask);
                 await _repository.UpdateAsync(task);
                 return Json(new
                 {
@@ -166,10 +173,11 @@ namespace TaskManager.WebUI.Controllers
 
             if (task?.UserId == int.Parse(_userManager.GetUserId(User)))
             {
-                return PartialView("Delete", task);
+                DeleteViewModel deleteTask = _mapper.Map<DeleteViewModel>(task);
+                return PartialView("Delete", deleteTask);
             }
 
-            return RedirectToAction("List");
+            return RedirectToAction("Read");
         }
 
         /// <summary>
@@ -179,10 +187,11 @@ namespace TaskManager.WebUI.Controllers
         /// <returns>Redirection to the main view</returns>
         [Route("Delete/{id:int}")]
         [HttpPost]
-        public async Task<IActionResult> Delete(TaskModel task)
+        public async Task<IActionResult> Delete(DeleteViewModel deleteTask)
         {
+            TaskModel task = _mapper.Map<TaskModel>(deleteTask);
             await _repository.DeleteAsync(task);
-            return RedirectToAction("List");
+            return RedirectToAction("Read");
         }
 
         /// <summary>

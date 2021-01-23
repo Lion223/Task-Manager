@@ -21,12 +21,13 @@ namespace TaskManager.Domain.Migrations.Tasks
 
             modelBuilder.Entity("TaskManager.Domain.Entities.TaskModel", b =>
                 {
-                    b.Property<int>("TaskId")
+                    b.Property<int?>("TaskId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -44,7 +45,8 @@ namespace TaskManager.Domain.Migrations.Tasks
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("TaskId");

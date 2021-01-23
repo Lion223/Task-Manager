@@ -1,4 +1,4 @@
-﻿@model TaskManager.Domain.Entities.TaskModel
+﻿@model TaskManager.WebUI.ViewModels.Tasks.UpdateViewModel
 
 <div class="modal_overlay" id="modal_overlay" tabindex="-1" role="dialog">
     <div class="modal_window" role="document">
@@ -12,6 +12,7 @@
             <div class="modal_body">
                 <form method="post" asp-action="Update" data-ajax="true" data-ajax-success="onValidateTask">
                     <div asp-validation-summary="All" class="text-danger"></div>
+
                     <input asp-for="TaskId" type="hidden" />
                     <input asp-for="UserId" type="hidden" />
                     <input asp-for="Finished" type="hidden" />
