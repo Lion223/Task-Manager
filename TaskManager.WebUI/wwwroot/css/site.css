@@ -3,8 +3,14 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /* General */
 
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 html {
-    height: 100vh;
+    min-height: 100vh;
 }
 
 body {
@@ -12,13 +18,9 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #EAEAEA;
     font-size: 16px;
-    height: 100%;
+    min-height: 100vh;
 }
 
-.container {
-    height: 100%;
-    padding: 100px;
-}
 
 h2, h3 {
     margin: 0;
@@ -41,6 +43,14 @@ a:hover, a:focus {
     color: inherit;
 }
 
+.mgr20 {
+    margin-right: 20px;
+}
+
+.m-mgt60 {
+    margin-top: -60px;
+}
+
 /* Disable white outline on buttons */
 
 button {
@@ -53,17 +63,10 @@ button:focus {
 
 /* Tasks page header */
 
-.tasks_header {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 60px;
-    align-items: center;
-}
-
-.tasks_header > h2 {
+.header {
     font-weight: 700;
-    font-size: 64px;
-    margin-right: 60px;
+    font-size: 3.5vw;
+    margin-right: 50px;
 }
 
 /* Create task button */
@@ -80,17 +83,14 @@ button:focus {
 
 /* Signed user panel */
 
-.user_info_container {
-    display: flex;
-    margin-left: auto;
-    align-items: center;
-}
+.email {
+    font-weight: 700;
+    margin-right: 20px;
+    font-size: 1.3vw;
+    color: #585A5F;
+    word-wrap: break-word;
+    display: inline-block;
 
-.user_info_container .email{
-    font-weight: 600;
-    margin-right: 10px;
-    font-size: 14px;
-    opacity: .2;
 }
 
 /* Sign-out button */
@@ -119,13 +119,49 @@ button:focus {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 10px 20px;
+    padding: 15px 20px;
     background: #46484E;
     border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.checkbox_priority_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.priority_container {
+    font-weight: 700;
+    font-size: 48px;
+    color: #5F6166;
+    line-height: 1;
+    min-width: 35px;
+    width: 35px;
+    text-align: center;
+}
+
+.main_info_container {
+    margin-right: 25px;
+}
+
+.description_container {
+    font-size: 24px;
+    font-weight: 500;
+    color: #EAEAEA;
+    line-height: 1.5;
+    margin-bottom: 5px;
+    word-break: break-all;
+}
+
+.date_container {
+    font-size: 18px;
+    font-weight: 700;
+    color: #5F6166;
+    line-height: 1;
 }
 
 /* Delete task button */
-
 .delete_task_container {
     display: flex;
     background: #EAEAEA;
@@ -152,24 +188,33 @@ button:focus {
 
 /* Finish indicator on task */
 
+.checkbox_container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .task_finished_checkbox {
     width: 28px;
     height: 28px;
     background: linear-gradient(180deg, #44464D 0%, #32353B 100%);
     border-radius: 50%;
-    vertical-align: middle;
     border: 3px solid #32353B;
     -webkit-appearance: none;
     outline: none;
     cursor: pointer;
-    margin-right: 15px;
 }
 
 .task_finished_checkbox:checked {
     background: linear-gradient(180deg, #2180E9 0%, #0E66C8 100%);
 }
 
-/* Modal overlay background */
+/* Modal overlay background (to overlay bootstrap) */
+
+.modal_placeholder {
+    position: relative;
+    z-index: 1;
+}
 
 .modal_overlay {
     position: fixed;
@@ -353,20 +398,11 @@ select:hover + .arrow::before, select:focus + .arrow::before {
     border-top: 8px solid #EAEAEA;
 }
 
-/* Row in modal dialog's form */
+/* Row in form */
 
 .form_row {
     display: flex;
-    flex-direction: column;
     margin-bottom: 20px;
-}
-
-.mgr20 {
-    margin-right: 20px;
-}
-
-.m-mgt60 {
-    margin-top: -60px;
 }
 
 /* Customize HTML5 Date element*/
@@ -384,4 +420,167 @@ input[type=datetime-local] {
 
 .validation-summary-valid > ul, .validation-summary-errors > ul {
     padding-left: 20px;
+}
+
+/* Media queries */
+
+/* Under bootstrap's sm width size */
+
+@media (max-width: 318px) {
+    .checkbox_priority_container {
+        flex-direction: column;
+        margin-right: 15px;
+    }
+
+    .description_container {
+        font-size: 16px;
+    }
+
+    .date_container {
+        font-size: 14px;
+    }
+
+    .priority_container {
+        font-size: 36px;
+        margin: 0;
+        min-width: 25px;
+        width: 25px;
+        margin-top: 2px;
+    }
+
+/*    .form_row {
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .form_row > *:not(span) {
+        margin-bottom: 20px;
+    }
+
+    .select_type_container {
+        margin-right: 0;
+    }
+
+    .select_priority {
+        width: 100%;
+    }*/
+}
+
+@media (min-width: 319px) {
+    .checkbox_priority_container {
+        flex-direction: column;
+        margin-right: 15px;
+    }
+
+    .description_container {
+        font-size: 16px;
+    }
+
+    .date_container {
+        font-size: 14px;
+    }
+
+    .priority_container {
+        font-size: 36px;
+        margin: 0;
+        min-width: 25px;
+        width: 25px;
+        margin-top: 2px;
+    }
+
+/*    .form_row {
+        flex-direction: column;
+    }
+
+    .form_row > *:not(span) {
+        margin-right: 0;
+    }
+
+    .select_type_container {
+        margin-bottom: 20px;
+    }
+
+    .select_priority {
+        width: 100%;
+    }
+
+    .select_deadline {
+        margin-bottom: 20px;
+    }*/
+}
+
+@media (min-width: 576px) {
+    .description_container {
+        font-size: 16px;
+    }
+
+    .date_container {
+        font-size: 14px;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .checkbox_priority_container {
+        flex-direction: row;
+        margin-right: 0;
+    }
+
+    .description_container {
+        font-size: 16px;
+    }
+
+    .date_container {
+        font-size: 14px;
+    }
+
+    .priority_container {
+        margin: 0 15px;
+    }
+
+/*    .form_row {
+        flex-direction: row;
+        margin-bottom: 20px;
+    }
+
+    .select_type_container {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .select_priority {
+        width: auto;
+    }
+
+    .select_deadline {
+        margin-bottom: 20px;
+    }*/
+}
+
+
+@media (min-width: 992px) {
+
+    .description_container {
+        font-size: 18px;
+    }
+
+    .date_container {
+        font-size: 16px;
+    }
+
+    .priority_container {
+        
+    }
+
+}
+
+
+@media (min-width: 1200px) {
+    .description_container {
+        font-size: 24px;
+    }
+
+    .date_container {
+        font-size: 18px;
+    }
 }

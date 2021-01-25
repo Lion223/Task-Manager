@@ -76,6 +76,7 @@ function closeModal() {
     });
 }
 
+// AJAX validation inside create and update modal overlays
 function onValidateTask(data) {
 
     if (data.status === "success") {

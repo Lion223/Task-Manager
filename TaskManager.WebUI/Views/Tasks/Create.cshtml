@@ -1,58 +1,61 @@
 ﻿@model TaskManager.WebUI.ViewModels.Tasks.CreateViewModel
 
 <div class="modal_overlay" id="modal_overlay" tabindex="-1" role="dialog">
-    <div class="modal_window" role="document">
-        <div class="modal_content">
-            <div class="modal_header">
-                <h3>New Task</h3>
-                <button type="button" class="close_modal_button" id="close_modal_button">
-                    <img src="~/img/add_sign.png" />
-                </button>
-            </div>
-            <div class="modal_body">
-                <form method="post" asp-action="Create" data-ajax="true" data-ajax-success="onValidateTask">
-                    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="container">
+        <div class="modal_window" role="document">
+            <div class="modal_content">
+                <div class="modal_header">
+                    <h3>New Task</h3>
+                    <button type="button" class="close_modal_button" id="close_modal_button">
+                        <img src="~/img/add_sign.png" />
+                    </button>
+                </div>
+                <div class="modal_body">
+                    <form method="post" asp-action="Create" data-ajax="true" data-ajax-success="onValidateTask">
+                        <div asp-validation-summary="All" class="text-danger"></div>
 
-                    <div class="form_row">
-                        <input asp-for="Description" placeholder="Description" />
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-
-                    <div class="form_row">
-                        <div class="select_type_container mgr20">
-                            <select class="select_type" required asp-for="Type">
-                                <option value="" disabled selected hidden>Type</option>
-                                <option value="Work">Work</option>
-                                <option value="Home">Home</option>
-                                <option value="Fun">Fun</option>
-                            </select>
-                            <span class="arrow"></span>
-                            <span asp-validation-for="Type" class="text-danger"></span>
+                        <div class="form_row">
+                            <input asp-for="Description" placeholder="Description" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
 
-                        <div class="select_priority_container">
-                            <select class="select_priority" required asp-for="Priority">
-                                <option value="" disabled selected hidden>Priority</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                            <span class="arrow"></span>
-                            <span asp-validation-for="Priority" class="text-danger"></span>
+                        <div class="form_row">
+                            <div class="select_type_container mgr20">
+                                <select class="select_type" required asp-for="Type">
+                                    <option value="" disabled selected hidden>Type</option>
+                                    <option value="Work">Work</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Fun">Fun</option>
+                                </select>
+                                <span class="arrow"></span>
+                                <span asp-validation-for="Type" class="text-danger"></span>
+                            </div>
+
+                            <div class="select_priority_container">
+                                <select class="select_priority" required asp-for="Priority">
+                                    <option value="" disabled selected hidden>Priority</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                                <span class="arrow"></span>
+                                <span asp-validation-for="Priority" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form_row">
-                        <input asp-for="Deadline" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" class="mgr20" />
-                        <span asp-validation-for="Deadline" class="text-danger"></span>
+                        <div class="form_row">
+                            <input asp-for="Deadline" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" class="select_deadline mgr20" />
+                            <span asp-validation-for="Deadline" class="text-danger"></span>
 
-                        <input type="submit" value="Apply" class="apply_button" />
-                    </div>
-                </form>
+                            <input type="submit" value="Apply" class="apply_button" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    
 </div>
 
 @section Scripts {
