@@ -46,7 +46,7 @@ namespace TaskManager.WebUI
             // Otherwise, "Account/Login" path is used by default in Identity
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = $"/Signin";
+                options.LoginPath = $"/sign-in";
             });
 
             // DI Identity Db

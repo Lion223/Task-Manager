@@ -443,3 +443,4 @@ W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskMan
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.pdb
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.genruntimeconfig.cache
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Tasks\Read.cshtml.g.cs
+W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signout.cshtml.g.cs

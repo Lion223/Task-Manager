@@ -7,49 +7,20 @@
 var modalPlaceholder = $('#modal_placeholder');
 
 // Create task button that uses modal placeholder to display the modal
-$('#create_modal_button').click(function (event) {
-    var url = $(this).data('url');
-    $.get(url).done(function (data) {
-        modalPlaceholder.html(data);
-
-        var ModalOverlay = $('#modal_overlay');
-        var closeModalButton = $('#close_modal_button');
-
-        ModalOverlay.css('visibility', 'visible');
-        ModalOverlay.animate({ opacity: 1 }, 250);
-
-        closeModalButton.click(closeModal);
-        ModalOverlay.click(function (e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-    });
-});
+$('#create_modal_button').click(loadModal);
 
 // Double click on the task div that uses modal placeholder to display the update task modal
-$('.update_modal_button').dblclick(function (event) {
-    var url = $(this).data('url');
-    $.get(url).done(function (data) {
-        modalPlaceholder.html(data);
-
-        var ModalOverlay = $('#modal_overlay');
-        var closeModalButton = $('#close_modal_button');
-
-        ModalOverlay.css('visibility', 'visible');
-        ModalOverlay.animate({ opacity: 1 }, 250);
-
-        closeModalButton.click(closeModal);
-        ModalOverlay.click(function (e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-    });
-});
+$('.update_modal_button').dblclick(loadModal);
 
 // Delete task button that uses modal placeholder to display the modal
-$('.delete_task_button').click(function (event) {
+$('.delete_task_button').click(loadModal);
+
+// Call for the sign-out modal window
+$('#sign_out_button').click(loadModal);
+
+// Load the appropriate modal window
+function loadModal(e) {
+    e.stopPropagation();
     var url = $(this).data('url');
     $.get(url).done(function (data) {
         modalPlaceholder.html(data);
@@ -61,17 +32,22 @@ $('.delete_task_button').click(function (event) {
         ModalOverlay.animate({ opacity: 1 }, 250);
 
         closeModalButton.click(closeModal);
-        ModalOverlay.click(function (e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
+        window.addEventListener("click", clickedOutside);
     });
-});
+}
+
+// If user has clicked outside of modal window - then close the modal window
+function clickedOutside(e) {
+    if (!document.getElementsByClassName('modal_window')[0].contains(e.target)) {
+        window.removeEventListener("click", clickedOutside);
+        closeModal();
+    } 
+}
 
 // Modal close function
 function closeModal() {
     $('.modal_overlay').animate({ opacity: 0 }, 250, function () {
+        window.removeEventListener("click", clickedOutside);
         modalPlaceholder.empty();
     });
 }

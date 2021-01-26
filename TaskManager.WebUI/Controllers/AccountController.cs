@@ -48,7 +48,7 @@ namespace TaskManager.WebUI.Controllers
         /// The sign-up GET action
         /// </summary>
         /// <returns>Sign-up view</returns>
-        [Route("Signup")]
+        [Route("sign-up")]
         [HttpGet]
         public IActionResult SignUp()
         {
@@ -59,7 +59,7 @@ namespace TaskManager.WebUI.Controllers
         /// The sign-up POST action
         /// </summary>
         /// <returns>Sign-up result</returns>
-        [Route("Signup")]
+        [Route("sign-up")]
         [HttpPost]
         public async Task<IActionResult> SignUp(SignUpViewModel signUpModel)
         {
@@ -98,7 +98,7 @@ namespace TaskManager.WebUI.Controllers
         /// The sign-in GET action
         /// </summary>
         /// <returns>Sign-in view</returns>
-        [Route("Signin")]
+        [Route("sign-in")]
         [HttpGet]
         public IActionResult SignIn()
         {
@@ -112,7 +112,7 @@ namespace TaskManager.WebUI.Controllers
         /// The sign-in POST action
         /// </summary>
         /// <returns>Sign-in result</returns>
-        [Route("Signin")]
+        [Route("sign-in")]
         [HttpPost]
         public async Task<IActionResult> SignIn(SignInViewModel signInModel)
         {
@@ -129,14 +129,26 @@ namespace TaskManager.WebUI.Controllers
             }
 
             return View();
-        } 
+        }
 
         /// <summary>
-        /// The sign-out action
+        /// GET sign-out action
+        /// </summary>
+        /// <returns>Partial view that represents a modal window for signing out</returns>
+        [Route("sign-out")]
+        [HttpGet]
+        public IActionResult SignOut()
+        {
+            return PartialView("Signout");
+        }
+
+        /// <summary>
+        /// POST sign-out action
         /// </summary>
         /// <returns>Redirection to sign-in view</returns>
-        [Route("SignOut")]
-        public async Task<IActionResult> SignOut()
+        [Route("Sign-out")]
+        [ActionName("SignOut")]
+        public async Task<IActionResult> SignOutPost()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("SignIn");

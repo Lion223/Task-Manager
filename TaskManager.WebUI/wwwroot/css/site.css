@@ -162,6 +162,7 @@ button:focus {
 }
 
 /* Delete task button */
+
 .delete_task_container {
     display: flex;
     background: #EAEAEA;
@@ -223,9 +224,6 @@ button:focus {
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     visibility: hidden;
     opacity: 0;
 }
@@ -272,11 +270,12 @@ button:focus {
     background: linear-gradient(180deg, #2180E9 0%, #0E66C8 100%);
     border: none;
     box-shadow: 0px 0px 5px #126BCF;
+    text-align: center;
     border-radius: 10px;
     font-weight: 800;
     color: #EAEAEA;
     font-size: 24px;
-    padding: 20px 50px;
+    padding: 25px 50px;
     transition: box-shadow 0.25s;
 }
 
@@ -340,6 +339,7 @@ select {
 .select_type_container {
     position: relative;
     flex-grow: 1;
+    margin-right: 20px;
 }
 
 .select_type {
@@ -348,6 +348,10 @@ select {
 
 .select_priority_container {
     position: relative;
+}
+
+.select_deadline {
+    margin-right: 20px;
 }
 
 /* First element which is served as a placeholder */
@@ -405,8 +409,15 @@ select:hover + .arrow::before, select:focus + .arrow::before {
     margin-bottom: 20px;
 }
 
-/* Customize HTML5 Date element*/
+.cancel_button {
+    text-align: center;
+}
 
+.modal_cancel_button {
+    margin-top: 20px;
+}
+
+/* Customize HTML5 Date element*/
 input[type=datetime-local] {
     cursor: text;
 }
@@ -427,6 +438,7 @@ input[type=datetime-local] {
 /* Under bootstrap's sm width size */
 
 @media (max-width: 318px) {
+
     .checkbox_priority_container {
         flex-direction: column;
         margin-right: 15px;
@@ -448,25 +460,51 @@ input[type=datetime-local] {
         margin-top: 2px;
     }
 
-/*    .form_row {
+    .form_row {
         flex-direction: column;
-        margin-bottom: 0;
+        margin-bottom: 20px;
+        flex-wrap: nowrap;
     }
 
-    .form_row > *:not(span) {
-        margin-bottom: 20px;
+    .select_description {
+        font-size: 14px;
     }
 
     .select_type_container {
         margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .select_type {
+        font-size: 14px;
     }
 
     .select_priority {
         width: 100%;
-    }*/
+        font-size: 14px;
+    }
+
+    .select_deadline {
+        margin-right: 0;
+        margin-bottom: 20px;
+        font-size: 12px;
+    }
+
+    .modal_cancel_button {
+        padding: 5px 10px;
+    }
+
+    .cancel_button {
+        padding: 20px 10px;
+    }
+
+    .apply_button {
+        padding: 20px 10px;
+    }
 }
 
 @media (min-width: 319px) {
+
     .checkbox_priority_container {
         flex-direction: column;
         margin-right: 15px;
@@ -488,15 +526,14 @@ input[type=datetime-local] {
         margin-top: 2px;
     }
 
-/*    .form_row {
+    .form_row {
         flex-direction: column;
-    }
-
-    .form_row > *:not(span) {
-        margin-right: 0;
+        margin-bottom: 20px;
+        flex-wrap: nowrap;
     }
 
     .select_type_container {
+        margin-right: 0;
         margin-bottom: 20px;
     }
 
@@ -505,42 +542,25 @@ input[type=datetime-local] {
     }
 
     .select_deadline {
+        margin-right: 0;
         margin-bottom: 20px;
-    }*/
+        font-size: 16px;
+    }
+
+    .modal_cancel_button {
+        padding: 25px 15px;
+    }
+
+    .apply_button {
+        padding: 25px 15px;
+    }
 }
 
 @media (min-width: 576px) {
-    .description_container {
-        font-size: 16px;
-    }
 
-    .date_container {
-        font-size: 14px;
-    }
-}
-
-
-@media (min-width: 768px) {
-    .checkbox_priority_container {
+    .form_row {
         flex-direction: row;
-        margin-right: 0;
-    }
-
-    .description_container {
-        font-size: 16px;
-    }
-
-    .date_container {
-        font-size: 14px;
-    }
-
-    .priority_container {
-        margin: 0 15px;
-    }
-
-/*    .form_row {
-        flex-direction: row;
-        margin-bottom: 20px;
+        flex-wrap: wrap;
     }
 
     .select_type_container {
@@ -548,13 +568,23 @@ input[type=datetime-local] {
         margin-bottom: 0;
     }
 
-    .select_priority {
-        width: auto;
+    .select_deadline {
+        font-size: 24px;
     }
 
-    .select_deadline {
-        margin-bottom: 20px;
-    }*/
+}
+
+
+@media (min-width: 768px) {
+
+    .checkbox_priority_container {
+        flex-direction: row;
+        margin-right: 0;
+    }
+
+    .priority_container {
+        margin: 0 15px;
+    }
 }
 
 
@@ -567,15 +597,11 @@ input[type=datetime-local] {
     .date_container {
         font-size: 16px;
     }
-
-    .priority_container {
-        
-    }
-
 }
 
 
 @media (min-width: 1200px) {
+
     .description_container {
         font-size: 24px;
     }
