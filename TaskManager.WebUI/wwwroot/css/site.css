@@ -43,14 +43,6 @@ a:hover, a:focus {
     color: inherit;
 }
 
-.mgr20 {
-    margin-right: 20px;
-}
-
-.m-mgt60 {
-    margin-top: -60px;
-}
-
 /* Disable white outline on buttons */
 
 button {
@@ -59,6 +51,90 @@ button {
 
 button:focus {
     outline: none;
+}
+
+/* Sign- in/up headers */
+
+.signin_header {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.signin_header > h2 {
+    font-size: 64px;
+    font-weight: 700;
+}
+
+.signin_header > p {
+    font-size: 24px;
+    font-weight: 500;
+    color: #5F6166;
+}
+
+.signup_header {
+    text-align: center;
+}
+
+.signup_header > h2 {
+    font-size: 64px;
+    font-weight: 700;
+}
+
+/* Sign form */
+
+.sign_form_wrapper, 
+.signup_form_wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px 5px 20px;
+    background: #32353B;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
+}
+
+.sign_checkbox_container {
+
+}
+
+.sign_checkbox_container .task_finished_checkbox {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(180deg, #32353B 0%, #3b3d42 100%);
+    border-radius: 50%;
+    border: 3px solid #3a3c40;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.sign_form_wrapper .form_row > input[placeholder],
+.signup_form_wrapper .form_row > input[placeholder] {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.sign_form_wrapper .cancel_button,
+.signup_form_wrapper .cancel_button {
+    width: auto;
+    border: 5px solid rgba(0, 0, 0, 0.00);
+    color: #5F6166;
+    padding: 20px 20px;
+}
+
+.sign_form_wrapper .apply_button,
+.signup_form_wrapper .apply_button {
+    padding: 20px 20px;
+}
+
+.sign_form_wrapper form > *:first-child,
+.signup_form_wrapper form > *:first-child {
+    margin-top: 15px;
+}
+
+.sign_form_wrapper form > *:nth-last-child(2),
+.signup_form_wrapper form > *:nth-last-child(2) {
+    margin-top: 30px;
 }
 
 /* Tasks page header */
@@ -103,8 +179,7 @@ button:focus {
     box-shadow: 0px 0px 4px #0E67C9;
     border-radius: 10px;
     padding: 20px 15px 20px 16px;
-    line-height: 0;
-    
+    line-height: 0;  
 }
 
 /* Task container */
@@ -572,6 +647,32 @@ input[type=datetime-local] {
         font-size: 24px;
     }
 
+    .signin_header {
+        text-align: center;
+    }
+
+    .signin_header > h2 {
+        font-size: 36px;
+    }
+
+    .signin_header > p {
+        font-size: 18px;
+    }
+
+    .sign_form_wrapper .cancel_button,
+    .signup_form_wrapper .cancel_button {
+        width: 100%;
+    }
+
+    .sign_form_wrapper .apply_button,
+    .signup_form_wrapper .apply_button {
+        width: 100%;
+    }
+
+    .sign_form_wrapper form > *:nth-last-child(2),
+    .signup_form_wrapper form > *:nth-last-child(2) {
+        margin-top: 10px;
+    }
 }
 
 
@@ -585,6 +686,28 @@ input[type=datetime-local] {
     .priority_container {
         margin: 0 15px;
     }
+
+    .signin_header {
+        text-align: center;
+    }
+
+    .signin_header > h2 {
+        font-size: 64px;
+    }
+
+    .signin_header > p {
+        font-size: 24px;
+    }
+
+    .sign_form_wrapper .cancel_button,
+    .signup_form_wrapper .cancel_button {
+        width: auto;
+    }
+
+    .sign_form_wrapper .apply_button,
+    .signup_form_wrapper .apply_button {
+        width: auto;
+    }
 }
 
 
@@ -597,6 +720,7 @@ input[type=datetime-local] {
     .date_container {
         font-size: 16px;
     }
+
 }
 
 
@@ -608,5 +732,9 @@ input[type=datetime-local] {
 
     .date_container {
         font-size: 18px;
+    }
+
+    .signin_header {
+        text-align: left;
     }
 }
