@@ -426,12 +426,14 @@ W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskMan
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.TagHelpers.output.cache
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.RazorCoreGenerate.cache
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signin.cshtml.g.cs
+W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signout.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signup.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Tasks\Create.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Tasks\Delete.cshtml.g.cs
+W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Tasks\Read.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Tasks\Update.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
@@ -442,5 +444,3 @@ W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskMan
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.pdb
 W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\TaskManager.WebUI.genruntimeconfig.cache
-W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Tasks\Read.cshtml.g.cs
-W:\Sources\Code\C#\TaskManager\TaskManager.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signout.cshtml.g.cs

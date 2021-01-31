@@ -9,33 +9,39 @@ namespace TaskManager.Domain.Abstract
     /// </summary>
     public interface ITaskRepository
     {
+        #region Public properties
+
         /// <summary>
-        /// Get the list of tasks
+        /// Get the list of <see cref="TaskModel"/> tasks
         /// </summary>
         IEnumerable<TaskModel> Tasks { get; }
 
+        #endregion
+
+        #region Public methods
+
         /// <summary>
-        /// Create the task
+        /// Create the <see cref="TaskModel"/> task
         /// </summary>
         /// <param name="task">Created task</param>
         /// <returns></returns>
         Task CreateAsync(TaskModel task);
 
         /// <summary>
-        /// Find the task by its id
+        /// Find the <see cref="TaskModel"/> task by its id
         /// </summary>
         /// <param name="id">id of searched task</param>
         /// <returns></returns>
         Task<TaskModel> FindAsync(int id);
 
         /// <summary>
-        /// Update the task
+        /// Update the <see cref="TaskModel"/> task
         /// </summary>
         /// <param name="task">Updated task</param>
         Task UpdateAsync(TaskModel task);
 
         /// <summary>
-        /// Deletes the task
+        /// Deletes the <see cref="TaskModel"/> task
         /// </summary>
         /// <param name="task">Task to be deleted</param>
         Task DeleteAsync(TaskModel task);
@@ -45,5 +51,7 @@ namespace TaskManager.Domain.Abstract
         /// </summary>
         /// <returns></returns>
         Task SaveChangesAsync();
+
+        #endregion
     }
 }

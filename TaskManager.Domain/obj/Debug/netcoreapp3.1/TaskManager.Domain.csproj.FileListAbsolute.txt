@@ -9,4 +9,3 @@ W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Debug\netcoreapp3.1\TaskMa
 W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Debug\netcoreapp3.1\TaskManager.Domain.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Debug\netcoreapp3.1\TaskManager.Domain.pdb
 W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Debug\netcoreapp3.1\TaskManager.Domain.genruntimeconfig.cache
-W:\Sources\Code\C#\TaskManager\TaskManager.Domain\obj\Debug\netcoreapp3.1\TaskManager.Domain.csprojAssemblyReference.cache

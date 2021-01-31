@@ -1,40 +1,54 @@
-﻿@using TaskManager.WebUI.ViewModels.Identity
-@model SignInViewModel
+﻿<!-- ----- View for sign-in ----- -->
+
+<!-- View model for sign-in operation -->
+@model TaskManager.WebUI.ViewModels.Identity.SignInViewModel
+
+<!-- Page title -->
 @{
 
     ViewData["Title"] = "Sign In";
 }
 
-<div id="modal_placeholder"></div>
-
 <div class="container-fluid">
+    <!-- Loader overlay for time-consuming operation -->
+    <div class="loader" id="loader"></div>
     <div class="row min-vh-100 d-flex align-items-center justify-content-center">
         <div class="d-none d-sm-block col-sm-6 col-md-6 col-lg-6 col-xl-4">
+            <!-- Header -->
             <div class="signin_header">
                 <h2>Task Manager</h2>
                 <p>Keep things under check</p>
             </div>
         </div>
         <div class="col-10 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+            <!-- Sign-in form wrapper -->
             <div class="sign_form_wrapper">
+                <!-- Interactive Finished checkbox (indicates if sign operation is failed or not) -->
                 <div class="sign_checkbox_container">
                     @Html.CheckBox("sign_checkbox", new { @class = "task_finished_checkbox" })
                 </div>
-                <form method="post" asp-action="Signin">
+                <!-- Sign-in form -->
+                <form method="post" asp-action="Signin" onsubmit="showLoader()">
+                    <!-- List of validation errors -->
                     <div asp-validation-summary="All" class="text-danger"></div>
 
+                    <!-- User's e-mail -->
                     <div class="form_row">
                         <input asp-for="Email" placeholder="Email" />
+                        <!-- E-mail validation errors -->
                         @*<span asp-validation-for="Email" class="text-danger"></span>*@
                     </div>
 
+                    <!-- User's password -->
                     <div class="form_row">
                         <input asp-for="Password" placeholder="Password" />
+                        <!-- Password validation errors -->
                         @*<span asp-validation-for="Password" class="text-danger"></span>*@
                     </div>
 
                     <div class="form_row justify-content-between">
                         <input type="submit" value="Sign In" class="cancel_button mb-3 mb-md-0 mr-md-3 flex-md-grow-1" />
+                        <!-- Redirect to the sign-up page -->
                         <button type="button" onclick="location.href='@Url.Action("Signup")'" class="apply_button flex-md-grow-1">Sign Up</button>
                     </div>
                 </form>

@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using TaskManager.Domain.Abstract;
 using TaskManager.Domain.Entities;
-using Microsoft.AspNetCore.Identity;
 using TaskManager.Domain.Entities.Identity;
-using System.Security.Claims;
-using System.Linq;
-using AutoMapper;
 using TaskManager.WebUI.ViewModels.Tasks;
-using System.Collections.Generic;
 
 namespace TaskManager.WebUI.Controllers
 {
@@ -90,7 +89,7 @@ namespace TaskManager.WebUI.Controllers
         /// POST Create task action
         /// </summary>
         /// <param name="task">New task</param>
-        /// <returns>Redirection to the main view</returns>
+        /// <returns>Redirection to the main view (AJAX)</returns>
         [Route("Create")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateViewModel createTask)
@@ -138,7 +137,7 @@ namespace TaskManager.WebUI.Controllers
         /// POST Update task action
         /// </summary>
         /// <param name="task">Updated task</param>
-        /// <returns>Redirection to the main view</returns>
+        /// <returns>Redirection to the main view (AJAX)</returns>
         [Route("Update/{id:int}")]
         [HttpPost]
         public async Task<IActionResult> Update(UpdateViewModel updateTask)

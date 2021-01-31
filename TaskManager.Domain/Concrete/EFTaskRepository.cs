@@ -9,9 +9,6 @@ namespace TaskManager.Domain.Concrete
     /// <summary>
     /// Entity Framework implementation of repository for tasks
     /// <summary>
-
-    // Async void methods caused "Cannot access a disposed context instance"
-    // TODO: Update is not working
     public class EFTaskRepository : ITaskRepository
     {
         #region Private members
@@ -34,6 +31,8 @@ namespace TaskManager.Domain.Concrete
         }
 
         #endregion
+
+        #region Public methods
 
         /// <summary>
         /// Access the tasks table
@@ -96,5 +95,6 @@ namespace TaskManager.Domain.Concrete
         /// <returns></returns>
         public async Task SaveChangesAsync() => await _context.SaveChangesAsync();
 
+        #endregion
     }
 }

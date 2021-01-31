@@ -78,3 +78,12 @@ function checkedClicked(selector) {
     var isChecked = selector.is(":checked");
     $.get(`/Finished/${id}/${isChecked}`, function () { })
 }
+
+// Loader overlay
+function showLoader() {
+    var loader = document.getElementById('loader');
+    var checkbox = $('.task_finished_checkbox');
+    loader.style.visibility = "visible";
+    checkbox.prop('checked', true);
+    loader.animate({ opacity: 1 }, 250);
+}

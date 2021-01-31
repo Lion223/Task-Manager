@@ -1,27 +1,42 @@
-﻿@model TaskManager.WebUI.ViewModels.Tasks.CreateViewModel
+﻿<!-- ----- Partial view for Create operation (modal) ----- -->
 
-<div class="modal_overlay h-100" id="modal_overlay" tabindex="-1" role="dialog">
+<!-- View model for Create operation -->
+@model TaskManager.WebUI.ViewModels.Tasks.CreateViewModel
+
+<!-- Overlay for modal window -->
+<div class="modal_overlay h-100" id="modal_overlay">
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-lg-8">
-                <div class="modal_window" role="document">
+                <!-- Modal window -->
+                <div class="modal_window">
+                    <!-- Modal insides -->
                     <div class="modal_content">
+                        <!-- Modal header -->
                         <div class="modal_header">
                             <h3>New</h3>
+                            <!-- Close button -->
                             <button type="button" class="close_modal_button" id="close_modal_button">
                                 <img src="~/img/add_sign.png" />
                             </button>
                         </div>
+                        <!-- Modal content -->
                         <div class="modal_body">
+                            <!-- Create form with AJAX -->
                             <form method="post" asp-action="Create" data-ajax="true" data-ajax-success="onValidateTask">
+                                <!-- List of validation errors -->
                                 <div asp-validation-summary="All" class="text-danger"></div>
 
+                                <!-- Task description-->
                                 <div class="form_row">
                                     <input asp-for="Description" placeholder="Description" class="select_description" />
+                                    <!-- Description validation errors -->
                                     @*<span asp-validation-for="Description" class="text-danger"></span>*@
                                 </div>
 
+                                <!-- Task type and priority selection -->
                                 <div class="form_row">
+                                    <!-- Type selection -->
                                     <div class="select_type_container">
                                         <select class="select_type" required asp-for="Type">
                                             <option value="" disabled selected hidden>Type</option>
@@ -30,9 +45,11 @@
                                             <option value="Fun">Fun</option>
                                         </select>
                                         <span class="arrow"></span>
+                                        <!-- Type validation errors -->
                                         @*<span asp-validation-for="Type" class="text-danger"></span>*@
                                     </div>
 
+                                    <!-- Priority selection -->
                                     <div class="select_priority_container">
                                         <select class="select_priority" required asp-for="Priority">
                                             <option value="" disabled selected hidden>Priority</option>
@@ -42,13 +59,18 @@
                                             <option value="3">3</option>
                                         </select>
                                         <span class="arrow"></span>
+                                        <!-- Priority validation errors -->
                                         @*<span asp-validation-for="Priority" class="text-danger"></span>*@
                                     </div>
                                 </div>
 
+                                <!-- Datepicker for task deadline date -->
                                 <div class="form_row">
+                                    <!-- Starting point is current time -->
                                     <input asp-for="Deadline" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" class="select_deadline" />
+                                    <!-- Deadline validation errors -->
                                     @*<span asp-validation-for="Deadline" class="text-danger"></span>*@
+
                                     <input type="submit" value="Apply" class="apply_button" />
                                 </div>
                             </form>
@@ -60,6 +82,7 @@
     </div>
 </div>
 
+<!-- jQuery validation -->
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

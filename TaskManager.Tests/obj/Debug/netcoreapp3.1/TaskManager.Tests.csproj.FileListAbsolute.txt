@@ -1,3 +1,6 @@
+W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.AssemblyInfoInputs.cache
+W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.AssemblyInfo.cs
+W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.csproj.CoreCompileInputs.cache
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll
@@ -86,10 +89,6 @@ W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\zh-Hans
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
-W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.csprojAssemblyReference.cache
-W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.AssemblyInfoInputs.cache
-W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.AssemblyInfo.cs
-W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.csproj.CoreCompileInputs.cache
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.csproj.CopyComplete
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.dll
 W:\Sources\Code\C#\TaskManager\TaskManager.Tests\obj\Debug\netcoreapp3.1\TaskManager.Tests.pdb

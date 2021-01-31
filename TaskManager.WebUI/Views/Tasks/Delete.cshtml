@@ -1,14 +1,22 @@
-﻿@model TaskManager.WebUI.ViewModels.Tasks.DeleteViewModel
+﻿<!-- ----- Partial view for Delete operation (modal) ----- -->
 
-<div class="modal_overlay h-100" id="modal_overlay" tabindex="-1" role="dialog">
+<!-- View model for Delete operation -->
+@model TaskManager.WebUI.ViewModels.Tasks.DeleteViewModel
+
+<!-- Overlay for modal window -->
+<div class="modal_overlay h-100" id="modal_overlay">
     <div class="container h-100">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="col-10 col-sm-8 col-md-6 col-lg-5">
-                <div class="modal_window no_header" role="document">
+                <!-- Modal window without header -->
+                <div class="modal_window no_header">
+                    <!-- Modal insides -->
                     <div class="modal_content">
+                        <!-- Modal content -->
                         <div class="modal_body">
-                            @*<b class="modal_message">Would you like to delete this task?</b>*@
+                            <!-- Delete form -->
                             <form method="post" asp-action="Delete" asp-controller="Tasks">
+                                <!-- All of the view model's properties hidden to transfer the task without any changes -->
                                 <input asp-for="TaskId" type="hidden" />
                                 <input asp-for="UserId" type="hidden" />
                                 <input asp-for="Type" type="hidden" />
@@ -16,6 +24,7 @@
                                 <input asp-for="Priority" type="hidden" />
                                 <input asp-for="Deadline" type="hidden" />
                                 <input asp-for="Finished" type="hidden" />
+
                                 <div class="form_row">
                                     <!-- https://stackoverflow.com/questions/5637969/is-an-empty-href-valid -->
                                     <input class="apply_button" type="submit" value="Delete" />
@@ -30,7 +39,3 @@
         </div>
     </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

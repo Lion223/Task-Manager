@@ -8,7 +8,7 @@ namespace TaskManager.WebUI.ViewModels.Identity
     public class SignUpViewModel
     {
         /// <summary>
-        /// Email used for the user
+        /// E-mail used by the user
         /// </summary>
         [Required(ErrorMessage = "Enter the e-mail address")]
         [EmailAddress(ErrorMessage = "Incorrect e-mail format")]
@@ -16,7 +16,7 @@ namespace TaskManager.WebUI.ViewModels.Identity
         public string Email { get; set; }
 
         /// <summary>
-        /// Password of the user
+        /// User's password
         /// </summary>
         [Required(ErrorMessage = "Enter the password")]
         [DataType(DataType.Password)]
